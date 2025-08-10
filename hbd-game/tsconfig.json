@@ -21,6 +21,15 @@
       ]
     },
     "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false
+  },
+  "include": [
+    "src",
+    "vite-env.d.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }
