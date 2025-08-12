@@ -1,0 +1,238 @@
+/* Mobile-first responsive styles for hbd-game */
+
+/* Base responsive styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Mobile viewport adjustments */
+@media screen and (max-width: 768px) {
+  /* Login Screen Mobile Optimizations */
+  .login-container {
+    padding: 1rem !important;
+  }
+  
+  .login-container .font-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .login-container .w-40 {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  
+  .login-container .w-24 {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+  
+  /* Game Screen Mobile Optimizations */
+  .game-container {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 0.5rem !important;
+  }
+  
+  .game-container > div:first-child {
+    order: 2 !important;
+  }
+  
+  .game-container > div:last-child {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  /* Game Board Mobile */
+  .game-board {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+  
+  .game-board .grid {
+    gap: 0.125rem !important;
+  }
+  
+  .game-board .w-12 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+  
+  /* UI Panel Mobile */
+  .ui-panel {
+    padding: 1rem !important;
+    margin: 0 0.5rem !important;
+  }
+  
+  .ui-panel .font-title {
+    font-size: 2rem !important;
+  }
+  
+  .ui-panel .text-2xl {
+    font-size: 1.25rem !important;
+  }
+  
+  .ui-panel .text-lg {
+    font-size: 1rem !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  /* Further mobile optimizations */
+  .login-container {
+    padding: 0.5rem !important;
+  }
+  
+  .login-container .font-title {
+    font-size: 2rem !important;
+  }
+  
+  .game-container {
+    padding: 0.25rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  .game-board {
+    max-width: 280px !important;
+  }
+  
+  .game-board .w-12 {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  
+  .ui-panel {
+    padding: 0.75rem !important;
+  }
+}
+
+/* Tablet optimizations */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .game-container {
+    gap: 2rem !important;
+  }
+  
+  .ui-panel {
+    width: 18rem !important;
+  }
+}
+
+/* Large screen optimizations */
+@media screen and (min-width: 1025px) {
+  .game-container {
+    gap: 4rem !important;
+  }
+  
+  .ui-panel {
+    width: 20rem !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  button, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .game-piece {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .game-piece:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Landscape mobile optimizations */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .login-container {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  
+  .login-container > div {
+    flex: 1 !important;
+  }
+  
+  .game-container {
+    flex-direction: row !important;
+    gap: 1rem !important;
+  }
+  
+  .game-container > div:first-child {
+    flex: 2 !important;
+  }
+  
+  .game-container > div:last-child {
+    flex: 1 !important;
+    width: auto !important;
+  }
+}
+
+/* Safe area support for modern devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Improved font scaling */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Scroll behavior */
+@media screen and (max-width: 768px) {
+  .overflow-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Modal mobile optimizations */
+.modal-container {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-container {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+}
+
+/* Loading screen mobile */
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+  .loading-screen {
+    padding: 1rem;
+  }
+}

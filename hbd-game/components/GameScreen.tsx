@@ -55,8 +55,39 @@ const GameScreen: React.FC<GameScreenProps> = ({ level, onLevelComplete, isInter
 
 
     return (
-        <div className="w-full h-full flex flex-col md:flex-row items-center justify-center p-4 gap-8">
-            {/* Game Board */}
+        <div className="w-full h-full flex flex-col md:flex-row items-center justify-center p-2 md:p-4 gap-2 md:gap-8 game-container">
+            {/* UI Panel - Mobile: Top, Desktop: Right */}
+            <div className="w-full md:w-64 flex-shrink-0 bg-black/20 p-3 md:p-6 rounded-2xl border border-white/20 backdrop-blur-sm space-y-3 md:space-y-6 ui-panel">
+                <h2 className="font-title text-2xl md:text-4xl text-center text-blue-300">Level {level.level}</h2>
+                
+                <div>
+                    <h3 className="text-base md:text-lg font-semibold text-pink-300 mb-1 md:mb-2">Joy Points</h3>
+                    <div className="bg-black/30 p-2 md:p-3 rounded-lg text-lg md:text-2xl font-bold text-center text-white">{score}</div>
+                </div>
+
+                <div>
+                    <h3 className="text-base md:text-lg font-semibold text-pink-300 mb-1 md:mb-2">Moves Left</h3>
+                    <div className="bg-black/30 p-2 md:p-3 rounded-lg text-lg md:text-2xl font-bold text-center text-white">{movesLeft}</div>
+                </div>
+
+                <div>
+                    <h3 className="text-base md:text-lg font-semibold text-pink-300 mb-1 md:mb-2">Goals</h3>
+                    <div className="space-y-1 md:space-y-2">
+                        {goals.map((goal, index) => {
+                             const originalGoal = level.goals.find(g => g.type === goal.type);
+                             const Icon = PIECE_ICONS[goal.type];
+                             return (
+                                <div key={index} className="bg-black/30 p-2 md:p-3 rounded-lg flex items-center justify-between">
+                                    <div className="w-6 h-6 md:w-8 md:h-8"><Icon/></div>
+                                    <div className="text-sm md:text-lg font-semibold">{goal.count} / {originalGoal?.count || 0}</div>
+                                </div>
+                             );
+                        })}
+                    </div>
+                </div>
+            </div>
+
+            {/* Game Board - Mobile: Bottom, Desktop: Left */}
             <GameBoard 
                 level={level}
                 onScoreUpdate={setScore}
@@ -64,37 +95,6 @@ const GameScreen: React.FC<GameScreenProps> = ({ level, onLevelComplete, isInter
                 onMove={handleMove}
                 isInteractable={isInteractable}
             />
-
-            {/* UI Panel */}
-            <div className="w-full md:w-64 flex-shrink-0 bg-black/20 p-6 rounded-2xl border border-white/20 backdrop-blur-sm space-y-6">
-                <h2 className="font-title text-4xl text-center text-blue-300">Level {level.level}</h2>
-                
-                <div>
-                    <h3 className="text-lg font-semibold text-pink-300 mb-2">Joy Points</h3>
-                    <div className="bg-black/30 p-3 rounded-lg text-2xl font-bold text-center text-white">{score}</div>
-                </div>
-
-                <div>
-                    <h3 className="text-lg font-semibold text-pink-300 mb-2">Moves Left</h3>
-                    <div className="bg-black/30 p-3 rounded-lg text-2xl font-bold text-center text-white">{movesLeft}</div>
-                </div>
-
-                <div>
-                    <h3 className="text-lg font-semibold text-pink-300 mb-2">Goals</h3>
-                    <div className="space-y-2">
-                        {goals.map((goal, index) => {
-                             const originalGoal = level.goals.find(g => g.type === goal.type);
-                             const Icon = PIECE_ICONS[goal.type];
-                             return (
-                                <div key={index} className="bg-black/30 p-3 rounded-lg flex items-center justify-between">
-                                    <div className="w-8 h-8"><Icon/></div>
-                                    <div className="text-lg font-semibold">{goal.count} / {originalGoal?.count || 0}</div>
-                                </div>
-                             );
-                        })}
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
